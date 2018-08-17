@@ -8,16 +8,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
+
 /**
  * Created by yehao on 16/7/18.
  */
 @Service
 public class DemoServiceImpl implements DemoService {
 
-    @Autowired
+    @Resource
     private ModuleMapper moduleMapper;
 
-    @Autowired
+    @Resource
     private DemoCache demoCache;
 
     /**
@@ -47,7 +49,7 @@ public class DemoServiceImpl implements DemoService {
         module.setName("测试tx");
         module.setProjectId(1);
         int success = moduleMapper.insertSelective(module);
-        int i = 1 / 0;
+        System.out.println("11111");
         return success;
     }
 

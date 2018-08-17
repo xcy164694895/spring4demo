@@ -28,7 +28,7 @@ public class DemoController {
     private DemoService demoService;
     @Autowired
     private DemoCache cache;
-    @Autowired
+//    @Autowired
     private RabbitTemplate rabbitTemplate;
 
 

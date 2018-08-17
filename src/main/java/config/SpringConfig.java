@@ -34,6 +34,7 @@ import javax.sql.DataSource;
 @ComponentScan(basePackages = {"com.idg"}, excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class)})
 @PropertySource("classpath:demo.properties")
 @EnableTransactionManagement(proxyTargetClass = true)
+@EnableAspectJAutoProxy
 public class SpringConfig {
 
     @Autowired
@@ -113,7 +114,7 @@ public class SpringConfig {
      * @return ConnectionFactory bean
      * @author yehao
      */
-    @Bean
+//    @Bean
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory("127.0.0.1");
         cachingConnectionFactory.setUsername("mq_yh");
@@ -128,8 +129,8 @@ public class SpringConfig {
      *
      * @param connectionFactory rabbitmq连接工厂
      * @return RabbitTemplate bean
-     */
-    @Bean
+//     */
+//    @Bean
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate();
         rabbitTemplate.setRoutingKey("local_queue");
@@ -138,7 +139,7 @@ public class SpringConfig {
         return rabbitTemplate;
     }
 
-    @Bean
+//    @Bean
     public SimpleMessageListenerContainer listenerContainer(ConnectionFactory connectionFactory) {
         SimpleMessageListenerContainer simpleMessageListenerContainer = new SimpleMessageListenerContainer();
         simpleMessageListenerContainer.setConnectionFactory(connectionFactory);
