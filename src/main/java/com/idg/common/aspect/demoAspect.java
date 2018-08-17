@@ -12,27 +12,27 @@ import org.springframework.stereotype.Component;
 @Component
 public class demoAspect {
 
-    @Before("execution(* com.idg.demo.service.DemoServiceImpl.testTx(..))")
+    @Before("execution(* com.idg.demo.service.DemoService.testTx(..))")
     public void before(){
         System.out.println("接口执行前，发起操作：before...");
     }
 
-    @After("execution(* com.idg.demo.service.DemoServiceImpl.testTx(..))")
+    @After("execution(* com.idg.demo.service.DemoService.testTx(..))")
     public void after(){
         System.out.println("接口执行后，发起操作：after...");
     }
 
-    @AfterReturning("execution(* com.idg.demo.service.DemoServiceImpl.testTx(..))")
+    @AfterReturning("execution(* com.idg.demo.service.DemoService.testTx(..))")
     public void afterReturning(){
         System.out.println("接口返回后，发起操作： afterReturning...");
     }
 
-    @AfterThrowing("execution(* com.idg.demo.service.DemoServiceImpl.testTx(..))")
+    @AfterThrowing("execution(* com.idg.demo.service.DemoService.testTx(..))")
     public void afterThrowing(){
         System.out.println("接口异常后，发起操作： afterThrowing...");
     }
 
-    @Pointcut("execution(* com.idg.demo.service.DemoServiceImpl.testTx(..))")
+    @Pointcut("execution(* com.idg.demo.service.DemoService.testTx(..))")
     public void cut(){
 
     }
@@ -50,4 +50,18 @@ public class demoAspect {
         return 1;
     }
 
+
+    /**
+     * 配置有参数的切点
+     * @param name 参数
+     */
+    @Pointcut("execution(* com.idg.demo.service.DemoService.findByName(String)) && args(name)")
+    public void findNameCut(String name){
+
+    }
+
+    @Before(value = "findNameCut(name)", argNames = "name")
+    public void findNameAop(String name){
+        System.out.println(name + "===========>aop");
+    }
 }  

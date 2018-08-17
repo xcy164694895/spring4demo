@@ -19,4 +19,7 @@ public interface DemoService {
      * @return
      */
     public int testTx();
+
+
+    public Module findByName(String name);
 }

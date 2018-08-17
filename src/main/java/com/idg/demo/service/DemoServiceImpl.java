@@ -22,6 +22,12 @@ public class DemoServiceImpl implements DemoService {
     @Resource
     private DemoCache demoCache;
 
+
+    public Module findByName(String name) {
+        System.out.println(name);
+        return new Module();
+    }
+
     /**
      * @param id
      */

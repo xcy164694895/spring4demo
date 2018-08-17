@@ -1,6 +1,7 @@
 package com.idg.service;
 
 import com.BaseTest;
+import com.idg.demo.domain.Module;
 import com.idg.demo.service.DemoService;
 import com.idg.demo.service.DemoServiceImpl;
 import com.sun.xml.internal.rngom.parse.host.Base;
@@ -15,10 +16,18 @@ import javax.annotation.Resource;
 public class DemoServiceTest extends BaseTest {
 
     @Resource
-    private DemoServiceImpl demoService;
+    private DemoService demoService;
 
     @Test
     public void testTx(){
         demoService.testTx();
+    }
+
+
+    @Test
+    public void testFindAll(){
+        String name = "熊晨阳！";
+        Module module = demoService.findByName(name);
+
     }
 }  
