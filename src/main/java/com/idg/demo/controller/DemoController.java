@@ -33,13 +33,14 @@ public class DemoController {
 
 
     @RequestMapping("/index")
-    public ModelAndView index() {
-        return new ModelAndView("demo/demo");
+    public String index() {
+        return "demo/demo1";
     }
 
     @RequestMapping("/hello")
-    public ModelAndView hello() {
-        return new ModelAndView("index");
+    public ModelAndView hello(Integer value) {
+        System.out.println(value);
+        return new ModelAndView("demo/demo1");
     }
 
     @RequestMapping("/json")
@@ -73,5 +74,11 @@ public class DemoController {
             logger.error(e.getMessage(), e);
         }
         return msg;
+    }
+
+
+    public void  login(String username, Integer password
+    ){
+
     }
 }
