@@ -22,8 +22,11 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 
 import javax.sql.DataSource;
+import java.io.IOException;
 
 /**
  * Created by yehao on 16/7/15.
@@ -163,5 +166,9 @@ public class SpringConfig {
         return simpleMessageListenerContainer;
     }
 
+    @Bean
+    public MultipartResolver multipartResolver() throws IOException{
+        return new StandardServletMultipartResolver();
+    }
 }
 

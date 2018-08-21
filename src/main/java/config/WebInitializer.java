@@ -2,6 +2,9 @@ package config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration;
+
 /**
  * @author xiongchenyang
  * @version [1.0 , 2018/8/17]
@@ -30,5 +33,10 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
      */
     protected String[] getServletMappings() {
         return new String[]{"/"};
+    }
+
+    @Override
+    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+        registration.setMultipartConfig(new MultipartConfigElement("E:/tmp/spring4Demo/uploads",2097152,4194304,0));
     }
 }

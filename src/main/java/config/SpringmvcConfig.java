@@ -68,7 +68,7 @@ public class SpringmvcConfig extends WebMvcConfigurerAdapter {
      *
      * @return
      */
-    @Bean
+//    @Bean
     public ViewResolver defaultViewResolver() {
         InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
         internalResourceViewResolver.setPrefix("/WEB-INFO/view/");
@@ -94,7 +94,7 @@ public class SpringmvcConfig extends WebMvcConfigurerAdapter {
                 webApplicationContext.getServletContext());
         templateResolver.setPrefix("/WEB-INFO/view/");
         templateResolver.setSuffix(".html");
-//        templateResolver.setCharacterEncoding("UTF-8");
+        templateResolver.setCharacterEncoding("UTF-8");
         // 设置模板模式,也可用字符串"HTML"代替,此处不建议使用HTML5,原因看下图源码
 //        templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setTemplateMode("HTML5");

@@ -9,9 +9,15 @@ import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -76,9 +82,17 @@ public class DemoController {
         return msg;
     }
 
-
-    public void  login(String username, Integer password
+    @RequestMapping(value = "login",method = RequestMethod.POST)
+    public String  login(String username, Integer password,@RequestPart("img") MultipartFile img
     ){
-
+        System.out.println("用户名："+username);
+        System.out.println("密码："+password);
+        System.out.println("图片"+ img.toString());
+        try {
+            img.transferTo(new File("E:/tmp/spring4Demo/uploads/"+img.getOriginalFilename()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "success";
     }
 }
