@@ -46,7 +46,8 @@ public class DemoController {
     @RequestMapping("/hello")
     public ModelAndView hello(Integer value) {
         System.out.println(value);
-        return new ModelAndView("demo/demo1");
+        throw new RuntimeException();
+//        return new ModelAndView("demo/demo1");
     }
 
     @RequestMapping("/json")
