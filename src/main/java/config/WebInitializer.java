@@ -1,5 +1,6 @@
 package config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.MultipartConfigElement;
@@ -18,7 +19,7 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
         //这个是激活当前环境生效的配置文件，最好不要这样写，用spring.profiles.default就行了，选择默认生效环境
         //System.setProperty("spring.profiles.active", "pro");
         System.setProperty("spring.profiles.default","dev");
-        return new Class<?>[]{SpringConfig.class};
+        return new Class<?>[]{SpringConfig.class,SecurityConfig.class};
     }
 
     /**
@@ -39,4 +40,5 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {
         registration.setMultipartConfig(new MultipartConfigElement("E:/tmp/spring4Demo/uploads",2097152,4194304,0));
     }
+
 }
