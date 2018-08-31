@@ -40,7 +40,7 @@ public class DemoController {
 
     @RequestMapping("/index")
     public String index() {
-        return "demo/demo1";
+        return "index";
     }
 
     @RequestMapping("/hello")

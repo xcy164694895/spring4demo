@@ -19,7 +19,6 @@ public class UserAuthServiceImpl implements UserAuthService {
 
     public UserAuth getByUserName(String userName) {
         Assert.notNull(userName,"要查询的用户名不允许为空！");
-        UserAuth userAuth = mapper.getByUserName(userName);
-        return userAuth;
+        return mapper.getByUserName(userName);
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
 import javax.annotation.Resource;
@@ -39,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().authenticated().and().formLogin().and().httpBasic();
+        http.authorizeRequests().antMatchers("/assets/**","/page-login","/login").permitAll().and().authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/login").and().rememberMe().tokenValiditySeconds(120).key("myLoginKey").and().logout().logoutSuccessUrl("/").logoutRequestMatcher(new AntPathRequestMatcher("/logout","GET"));
 
     }
 
